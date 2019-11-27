@@ -41,6 +41,13 @@ app.get("/", function (req, res) {
 
 
 // your first API endpoint... 
+app.get("/api/timestamp/", function (req, res) {
+  let time = new Date();
+  res.json({
+    "unix": new Date(time).getTime(),
+    "utc": new Date(time).toUTCString()
+  });
+});
 app.get("/api/timestamp/:date_string", function (req, res) {
   let timestamp = req.params.date_string
   if (!timestamp) {
@@ -64,6 +71,6 @@ app.get("/api/timestamp/:date_string", function (req, res) {
 
 
 // listen for requests :)
-var listener = app.listen(3000, function () {
+var listener = app.listen(4002, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
